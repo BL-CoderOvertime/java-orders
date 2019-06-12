@@ -22,27 +22,28 @@ class AgentServiceImpl : AgentService {
        var list = arrayListOf<Agents>()
 
         //TODO:Fix this
-        agentRepos!!.findAll().iterator().forEachRemaining(list:add)
+        agentRepos!!.findAll().iterator().forEachRemaining(list::add)
 
         return list
     }
 
     override fun findAgentsById(id: Long): Agents {
-        //TODO: fix this
-        return agentRepos!!.findById(id).orElseThrow(() -> EntityNotFoundException(id.toString()))
+        return agentRepos!!.findById(id)
+                .orElseThrow { EntityNotFoundException(java.lang.Long.toString(id)) }
     }
 
-    override fun findAgentsByName(name: String): Agents {
 
-        //TODO: Finish this up
+    override fun findAgentsByName(name: String): Agents? {
 
-        var agent : Agents = Agents()
-        if(agentRepos.findByName(name) != null){
-             =  agentRepos.findByName(name)
+        var agent : Agents? = agentRepos?.findByName(name)
+
+        if(agentRepos?.findByName(name) == null){
+            throw EntityNotFoundException("Agent $name Not Found!")
         }
 
         return agent
     }
+
 
     override fun delete(id: Long) {
         if(agentRepos!!.findById(id).isPresent){

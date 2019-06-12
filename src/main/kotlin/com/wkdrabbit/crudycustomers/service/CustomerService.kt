@@ -6,7 +6,7 @@ import java.util.ArrayList
 
 interface CustomerService {
 
-    fun findAll(): ArrayList<Customers>
+    fun findAll(): List<Customers>
 
     fun findCustomersById(id: Long): Customers
 

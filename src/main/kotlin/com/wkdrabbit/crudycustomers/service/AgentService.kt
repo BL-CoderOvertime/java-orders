@@ -9,13 +9,13 @@ interface AgentService {
 
     fun findAll(): ArrayList<Agents>
 
-    fun findAgentsById(id: Long): Agents
+    fun findAgentsById(id: Long): Agents?
 
-    fun findAgentsByName(name: String): Agents
+    fun findAgentsByName(name: String): Agents?
 
     fun delete(id: Long)
 
-    fun save(agent: Agents): Agents
+    fun save(agent: Agents): Agents?
 
-    fun update(agent: Agents, id: Long): Agents
+    fun update(agent: Agents, id: Long): Agents?
 }
